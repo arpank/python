@@ -1,4 +1,5 @@
 import numpy as np
+
 import matplotlib as p
 import pdb
 from pandas import *
@@ -43,13 +44,12 @@ for sex in unique(data.sex):
         print ((len(test.columns)))
         print (range(len(test.columns)))
 
-     # new_order = [len(test.columns) - 1] + range(len(test.columns) - 1)
-     #   test = test.reindex(columns=test.columns[new_order])
+        new_order = [len(test.columns) - 1] + range(len(test.columns) - 1)
+        test = test.reindex(columns=test.columns[new_order])
         # make a new column to contain information on the fare_bracket
         test['fare_bracket'] = 0
         # we find that one of the entries is missing its fare entry
-        print ("asdf")
-        sum(test.fare != test.fare)
+        print (sum(test.fare != test.fare))
 
     # we first find that one (it has a NaN so checking if it is
     # equal to itself will return a False)
