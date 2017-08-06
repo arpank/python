@@ -1,5 +1,9 @@
 from numpy import loadtxt, where, reshape, transpose, log, e, zeros, array, ones, append
 from pylab import scatter, show, legend, xlabel, ylabel
+from matlab import linspace, contour, title
+#from numpy import fmin_bfgs
+
+
 def sigmoid(X):
     '''Compute the sigmoid function '''
     #d = zeros(shape=(X.shape))
@@ -56,7 +60,7 @@ def map_feature(x1, x2):
         for j in range(i + 1):
             r = (x1 ** (i - j)) * (x2 ** j)
             out = append(out, r, axis=1)
-            print("First number is {i} and number is {j} out is {out}".format(i=i, j=j, out=out) )
+          #  print("First number is {i} and number is {j} out is {out}".format(i=i, j=j, out=out) )
     return out
 
 #load the dataset
@@ -105,3 +109,50 @@ cost, grad = cost_function_reg(initial_theta, it, y, l)
 
 def decorated_cost(theta):
     return cost_function_reg(theta, it, y, l)
+
+
+theta = [
+    1.273005,
+    0.624876,
+    1.177376,
+    -2.020142,
+    -0.912616,
+    -1.429907,
+    0.125668,
+    -0.368551,
+    -0.360033,
+    -0.171068,
+    -1.460894,
+    -0.052499,
+    -0.618889,
+    -0.273745,
+    -1.192301,
+    -0.240993,
+    -0.207934,
+    -0.047224,
+    -0.278327,
+    -0.296602,
+    -0.453957,
+    -1.045511,
+    0.026463,
+    -0.294330,
+    0.014381,
+    -0.328703,
+    -0.143796,
+    -0.924883,
+]
+#Plot Boundary
+u = linspace(-1, 1.5, 50)
+v = linspace(-1, 1.5, 50)
+z = zeros(shape=(len(u), len(v)))
+for i in range(len(u)):
+    for j in range(len(v)):
+        z[i, j] = (map_feature(array(u[i]), array(v[j])).dot(array(theta)))
+
+z = z.T
+contour(u, v, z)
+title('lambda = %f' % l)
+xlabel('Microchip Test 1')
+ylabel('Microchip Test 2')
+legend(['y = 1', 'y = 0', 'Decision boundary'])
+show()
