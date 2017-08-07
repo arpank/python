@@ -26,3 +26,9 @@ for item in r.json():
     #    print(data[0][1]   )
 
 print (data['geonames'][1]["name"])
+print ("arpan")
+for key in data:
+	print ( key)
+
+for k, v in data.items() :
+    print(k, v)
