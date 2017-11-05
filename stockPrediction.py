@@ -10,13 +10,15 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.svm import SVC
 import operator
-import pandas.io.data
+#import pandas.io.data
 from sklearn.qda import QDA
 import re
 from dateutil import parser
 #from backtest import Strategy, Portfolio
+from pandas_datareader import data, wb
 
 
+print ( "test")
 def getStock(symbol, start, end):
     """
     Downloads Stock from Yahoo Finance.
